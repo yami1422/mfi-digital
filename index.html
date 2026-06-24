@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MFI Digital – Jasa pembuatan aplikasi, percetakan profesional, dan media kreatif terbaik. Solusi digital all-in-one untuk bisnis Anda berkembang lebih cepat." />
+  <meta name="keywords" content="jasa pembuatan aplikasi, percetakan, media kreatif, desain grafis, website, digital marketing, MFI Digital" />
+  <meta property="og:title" content="MFI Digital – Aplikasi, Cetak, Kreatif" />
+  <meta property="og:description" content="Solusi digital lengkap: aplikasi custom, cetak profesional, konten kreatif. Hubungi kami sekarang!" />
+  <meta property="og:url" content="https://mfi-digital.web.id" />
+  <title>MFI Digital – Aplikasi · Percetakan · Media Kreatif</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="https://drive.google.com/file/d/188Oo1NYLfeKH5WKCBmLqKRK-n4i6vQQ7/view?usp=sharing">
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --navy:   #0D1B2A;
+      --blue:   #1E6FFF;
+      --blue2:  #0A4FD8;
+      --milk:   #F5F7FA;
+      --muted:  #8A9BB0;
+      --orange: #FF8C00;
+      --white:  #FFFFFF;
+      --card-bg:#111D2E;
+      --border: rgba(30,111,255,.18);
+      --radius: 16px;
+      --fs-hero: clamp(2.6rem, 6vw, 4.8rem);
+      --fs-h2:   clamp(1.8rem, 3.5vw, 2.8rem);
+      --fs-h3:   1.15rem;
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── UTILITIES ── */
+    .container { width: min(1160px, 92%); margin-inline: auto; }
+    .tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      border: 1px solid var(--orange);
+      border-radius: 99px;
+      padding: .25em .9em;
+      margin-bottom: 1.2rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85em 2em;
+      border-radius: 99px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      box-shadow: 0 4px 24px rgba(30,111,255,.35);
+    }
+    .btn-primary:hover { background: var(--blue2); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(30,111,255,.5); }
+    .btn-wa {
+      background: #25D366;
+      color: var(--white);
+      box-shadow: 0 4px 24px rgba(37,211,102,.3);
+    }
+    .btn-wa:hover { background: #1dba58; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,211,102,.5); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.3);
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.06); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 0;
+      transition: var(--transition);
+    }
+    nav.scrolled {
+      background: rgba(13,27,42,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -.01em;
+    }
+    .logo span { color: var(--blue); }
+    .logo em { color: var(--orange); font-style: normal; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { display: flex; gap: .75rem; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 70% 40%, rgba(30,111,255,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(255,140,0,.10) 0%, transparent 60%);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: var(--fs-hero);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -.02em;
+    }
+    .hero-headline .line2 { color: var(--blue); }
+    .hero-headline .accent { color: var(--orange); }
+    .hero-sub {
+      margin-top: 1.4rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 46ch;
+    }
+    .hero-actions {
+      margin-top: 2.2rem;
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .hero-stats {
+      margin-top: 3rem;
+      display: flex; gap: 2.5rem;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+    .stat-num span { color: var(--orange); }
+    .stat-label { font-size: .82rem; color: var(--muted); margin-top: .1rem; }
+
+    /* hero visual */
+    .hero-visual {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .visual-ring {
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      animation: rotate 20s linear infinite;
+    }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    .visual-ring::before {
+      content: '';
+      position: absolute;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      border: 1px solid rgba(30,111,255,.25);
+    }
+    .ring-dot {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 12px var(--blue);
+    }
+    .ring-dot:nth-child(1) { top: 0; left: 50%; transform: translate(-50%,-50%); }
+    .ring-dot:nth-child(2) { bottom: 20px; right: 10px; background: var(--orange); box-shadow: 0 0 12px var(--orange); }
+    .ring-dot:nth-child(3) { bottom: 20px; left: 10px; }
+    .visual-center {
+      animation: counter-rotate 20s linear infinite;
+      text-align: center;
+    }
+    @keyframes counter-rotate { to { transform: rotate(-360deg); } }
+    .vc-icon { font-size: 4rem; line-height: 1; }
+    .vc-label {
+      font-family: 'Syne', sans-serif;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-top: .4rem;
+    }
+    .floating-badge {
+      position: absolute;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .6rem 1rem;
+      font-size: .8rem;
+      font-weight: 600;
+      display: flex; align-items: center; gap: .5rem;
+      animation: float 3s ease-in-out infinite;
+      animation-fill-mode: both;
+    }
+    .floating-badge .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .badge-1 { top: 10%; left: -10%; animation-delay: 0s; }
+    .badge-2 { bottom: 18%; right: -8%; animation-delay: 1s; }
+    .badge-3 { top: 55%; left: -15%; animation-delay: 1.8s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 0; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: var(--fs-h2);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+    }
+    .section-sub {
+      margin-top: .8rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 52ch;
+      margin-inline: auto;
+    }
+
+    /* ── REASONS / WHY ── */
+    #why { background: var(--card-bg); }
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .reason-card {
+      background: var(--navy);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .reason-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--orange));
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .reason-card:hover { transform: translateY(-4px); border-color: rgba(30,111,255,.4); }
+    .reason-card:hover::before { opacity: 1; }
+    .reason-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: .5rem;
+      user-select: none;
+    }
+    .reason-icon { font-size: 2rem; margin-bottom: .8rem; }
+    .reason-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .reason-desc { color: var(--muted); font-size: .93rem; }
+
+    /* ── SERVICES / PACKAGES ── */
+    #layanan {}
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    /* holographic shimmer card */
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.8rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: var(--transition);
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(30,111,255,0) 0%,
+        rgba(30,111,255,.08) 40%,
+        rgba(255,140,0,.06) 60%,
+        rgba(30,111,255,0) 100%
+      );
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .service-card:hover { transform: translateY(-6px); border-color: rgba(30,111,255,.5); box-shadow: 0 16px 48px rgba(30,111,255,.15); }
+    .service-card:hover::after { opacity: 1; }
+    .service-card.featured {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 1px var(--blue), 0 8px 40px rgba(30,111,255,.2);
+    }
+    .featured-badge {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: var(--blue);
+      color: var(--white);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .25em .8em;
+      border-radius: 99px;
+    }
+    .service-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .service-icon.blue  { background: rgba(30,111,255,.15); }
+    .service-icon.orange{ background: rgba(255,140,0,.15); }
+    .service-icon.green { background: rgba(37,211,102,.12); }
+    .service-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: .4rem;
+    }
+    .service-tagline {
+      font-size: .85rem;
+      color: var(--orange);
+      font-weight: 600;
+      margin-bottom: .8rem;
+    }
+    .service-desc { color: var(--muted); font-size: .9rem; margin-bottom: 1.4rem; }
+    .service-features { list-style: none; margin-bottom: 1.8rem; }
+    .service-features li {
+      color: var(--muted);
+      font-size: .88rem;
+      padding: .4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      display: flex; align-items: flex-start; gap: .5rem;
+    }
+    .service-features li::before { content: '✓'; color: var(--blue); flex-shrink: 0; font-weight: 700; }
+    .service-price {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+    .service-price small { font-family: 'Inter', sans-serif; font-size: .78rem; font-weight: 400; color: var(--muted); }
+
+    /* ── TESTIMONIALS ── */
+    #testimoni { background: var(--card-bg); }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .testi-card {
+      background: var(--navy);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      transition: var(--transition);
+    }
+    .testi-card:hover { border-color: rgba(30,111,255,.35); transform: translateY(-3px); }
+    .stars { color: var(--orange); font-size: .95rem; margin-bottom: .8rem; letter-spacing: .1em; }
+    .testi-text { color: var(--muted); font-size: .92rem; font-style: italic; margin-bottom: 1.2rem; line-height: 1.6; }
+    .testi-author { display: flex; align-items: center; gap: .8rem; }
+    .avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--orange));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .9rem; flex-shrink: 0;
+    }
+    .author-name { font-weight: 600; font-size: .9rem; }
+    .author-role { font-size: .78rem; color: var(--muted); }
+
+    /* ── CTA FINAL ── */
+    #cta {
+      background: linear-gradient(135deg, rgba(30,111,255,.12) 0%, rgba(255,140,0,.06) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .cta-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      max-width: 18ch;
+      margin-inline: auto;
+    }
+    .cta-title em { color: var(--orange); font-style: normal; }
+    .cta-sub { color: var(--muted); margin-top: 1rem; margin-bottom: 2.4rem; font-size: 1.05rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-wa-lg {
+      padding: 1em 2.4em;
+      font-size: 1.1rem;
+      border-radius: 99px;
+      background: #25D366;
+      color: var(--white);
+      font-weight: 700;
+      display: inline-flex; align-items: center; gap: .6rem;
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 32px rgba(37,211,102,.35);
+      transition: var(--transition);
+    }
+    .btn-wa-lg:hover { background: #1dba58; transform: translateY(-3px); box-shadow: 0 8px 40px rgba(37,211,102,.5); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: .6rem;
+    }
+    .footer-links {
+      display: flex; gap: 1.5rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .footer-links a { font-size: .85rem; color: var(--muted); transition: color var(--transition); }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: .78rem; color: var(--muted); }
+
+    /* ── MOBILE NAV ── */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(13,27,42,.97);
+      backdrop-filter: blur(16px);
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99;
+      padding: 6rem 2rem 2rem;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--blue); }
+    .mobile-close {
+      position: absolute; top: 1.4rem; right: 1.4rem;
+      background: none; border: none;
+      color: var(--white); font-size: 1.6rem; cursor: pointer;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .reasons-grid, .services-grid, .testi-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links, .nav-cta .btn-outline { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .reasons-grid, .services-grid, .testi-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; gap: 1rem; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <div class="logo">MFI<span>.</span><em>digital</em></div>
+    <div class="nav-links">
+      <a href="#why">Kenapa Kami</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#cta">Kontak</a>
+      <a href="https://www.linkacara.com/catalog/mfi-katalog">Undangan Online</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-outline" href="#layanan">Lihat Paket</a>
+      <a class="btn btn-wa" href="https://wa.me/6285876552977?text=Halo%20MFI%20Digital%2C%20saya%20ingin%20konsultasi%20layanan" target="_blank" rel="noopener">
+        💬 WhatsApp
+      </a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Buka menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#why" class="mob-link">Kenapa Kami</a>
+  <a href="#layanan" class="mob-link">Layanan</a>
+  <a href="#testimoni" class="mob-link">Testimoni</a>
+  <a href="#cta" class="mob-link">Kontak</a>
+  <a class="btn btn-wa" href="https://wa.me/6285876552977?text=Halo%20MFI%20Digital%2C%20saya%20ingin%20konsultasi%20layanan" target="_blank" rel="noopener" style="margin-top:1rem; width:100%; justify-content:center;">
+    💬 Chat WhatsApp Sekarang
+  </a>
+</div>
+
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="tag">🚀 Solusi Digital All-in-One</span>
+        <h1 class="hero-headline">
+          Wujudkan Ide<br />
+          <span class="line2">Bisnis Anda</span><br />
+          Lebih <span class="accent">Cepat.</span>
+        </h1>
+        <p class="hero-sub">
+          Dari aplikasi custom hingga cetak profesional dan konten kreatif — MFI Digital hadir sebagai mitra terpercaya untuk membawa brand Anda ke level berikutnya.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#layanan">Lihat Paket Layanan</a>
+          <a class="btn btn-wa" href="https://wa.me/6285876552977?text=Halo%20MFI%20Digital%2C%20saya%20ingin%20konsultasi%20gratis" target="_blank" rel="noopener">💬 Konsultasi Gratis</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">200<span>+</span></div>
+            <div class="stat-label">Proyek Selesai</div>
+          </div>
+          <div>
+            <div class="stat-num">98<span>%</span></div>
+            <div class="stat-label">Klien Puas</div>
+          </div>
+          <div>
+            <div class="stat-num">5<span>⭐</span></div>
+            <div class="stat-label">Rating Layanan</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-ring">
+          <div class="ring-dot"></div>
+          <div class="ring-dot"></div>
+          <div class="ring-dot"></div>
+          <div class="visual-center">
+            <div class="vc-icon">⚡</div>
+            <div class="vc-label">MFI Digital</div>
+          </div>
+        </div>
+        <div class="floating-badge badge-1">
+          <span class="dot" style="background:#1E6FFF;"></span> App Launched ✓
+        </div>
+        <div class="floating-badge badge-2">
+          <span class="dot" style="background:#25D366;"></span> Design Ready ✓
+        </div>
+        <div class="floating-badge badge-3">
+          <span class="dot" style="background:#FF8C00;"></span> Print Delivered ✓
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ WHY ══ -->
+<section id="why">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Mengapa Memilih Kami</span>
+      <h2 class="section-title">3 Alasan Klien Kami<br/>Selalu Kembali</h2>
+      <p class="section-sub">Bukan sekadar vendor — kami adalah mitra strategis yang berkomitmen pada hasil nyata untuk bisnis Anda.</p>
+    </div>
+    <div class="reasons-grid">
+      <div class="reason-card reveal">
+        <div class="reason-num">01</div>
+        <div class="reason-icon">🎯</div>
+        <div class="reason-title">Solusi Tepat Sasaran</div>
+        <p class="reason-desc">Kami tidak menjual template — setiap proyek dikerjakan sesuai kebutuhan spesifik bisnis Anda. Analisis mendalam di awal memastikan hasil yang benar-benar relevan dan berdampak.</p>
+      </div>
+      <div class="reason-card reveal">
+        <div class="reason-num">02</div>
+        <div class="reason-icon">⚡</div>
+        <div class="reason-title">Pengerjaan Cepat & Terstruktur</div>
+        <p class="reason-desc">Didukung tim profesional berpengalaman, proyek Anda dikerjakan dengan manajemen yang rapi. Deadline bukan sekadar janji — itu adalah komitmen kami kepada Anda.</p>
+      </div>
+      <div class="reason-card reveal">
+        <div class="reason-num">03</div>
+        <div class="reason-icon">🛡️</div>
+        <div class="reason-title">Dukungan Purna Jual Penuh</div>
+        <p class="reason-desc">Layanan kami tidak berhenti di serah terima. Kami menyediakan dukungan teknis, revisi, dan konsultasi lanjutan agar investasi digital Anda tetap optimal sepanjang waktu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ SERVICES ══ -->
+<section id="layanan">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Paket Layanan</span>
+      <h2 class="section-title">Semua yang Bisnis Anda<br/>Butuhkan, Di Satu Tempat</h2>
+      <p class="section-sub">Pilih paket yang sesuai dengan kebutuhan dan anggaran Anda — atau hubungi kami untuk solusi custom.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Card 1: Aplikasi -->
+      <div class="service-card reveal">
+        <div class="service-icon blue">💻</div>
+        <div class="service-name">Pembuatan Aplikasi</div>
+        <div class="service-tagline">Website · Mobile App · Sistem Informasi</div>
+        <p class="service-desc">Aplikasi custom yang dibangun sesuai alur kerja dan kebutuhan spesifik bisnis Anda — bukan template siap pakai.</p>
+        <ul class="service-features">
+          <li>Website company profile & landing page</li>
+          <li>Aplikasi mobile Android & iOS</li>
+          <li>Sistem informasi manajemen (SIM)</li>
+          <li>Dashboard & laporan real-time</li>
+          <li>Integrasi payment gateway & API</li>
+          <li>Hosting & domain gratis 1 tahun</li>
+        </ul>
+        <div class="service-price">Mulai Rp 1,5 Juta <small>/ proyek</small></div>
+        <br /><br />
+        <a class="btn btn-wa" href="https://wa.me/6285876552977?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20Pembuatan%20Aplikasi" target="_blank" rel="noopener" style="width:100%; justify-content:center; margin-top:.6rem;">
+          💬 Tanya Sekarang
+        </a>
+      </div>
+
+      <!-- Card 2: Percetakan (featured) -->
+      <div class="service-card featured reveal">
+        <div class="featured-badge">Paling Populer</div>
+        <div class="service-icon orange">🖨️</div>
+        <div class="service-name">Percetakan Digital</div>
+        <div class="service-tagline">Kualitas Premium · Pengiriman Cepat</div>
+        <p class="service-desc">Cetak segala kebutuhan promosi dan identitas brand Anda dengan hasil tajam, warna akurat, dan finishing profesional.</p>
+        <ul class="service-features">
+          <li>Brosur, flyer, banner, & spanduk</li>
+          <li>Kartu nama & stationery bisnis</li>
+          <li>Kalender, agenda, & merchandise</li>
+          <li>Undangan & souvenir cetak</li>
+          <li>Stiker, label, & kemasan produk</li>
+          <li>Desain gratis untuk order tertentu</li>
+        </ul>
+        <div class="service-price">Mulai Rp 50 Ribu <small>/ produk</small></div>
+        <br /><br />
+        <a class="btn btn-wa" href="https://wa.me/6285876552977?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20Percetakan" target="_blank" rel="noopener" style="width:100%; justify-content:center; margin-top:.6rem; background:#FF8C00; box-shadow:0 4px 24px rgba(255,140,0,.35);">
+          💬 Order Sekarang
+        </a>
+      </div>
+
+      <!-- Card 3: Media Kreatif -->
+      <div class="service-card reveal">
+        <div class="service-icon green">🎨</div>
+        <div class="service-name">Media Kreatif</div>
+        <div class="service-tagline">Desain · Konten · Branding</div>
+        <p class="service-desc">Konten visual yang memukau audiens dan memperkuat identitas brand Anda di semua platform digital maupun fisik.</p>
+        <ul class="service-features">
+          <li>Desain logo & identitas brand</li>
+          <li>Konten media sosial (feed & story)</li>
+          <li>Videografi & editing profesional</li>
+          <li>Motion graphic & animasi</li>
+          <li>Foto produk & katalog digital</li>
+          <li>Paket manajemen medsos bulanan</li>
+        </ul>
+        <div class="service-price">Mulai Rp 300 Ribu <small>/ konten</small></div>
+        <br /><br />
+        <a class="btn btn-wa" href="https://wa.me/6285876552977?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20Media%20Kreatif" target="_blank" rel="noopener" style="width:100%; justify-content:center; margin-top:.6rem;">
+          💬 Tanya Sekarang
+        </a>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;" class="reveal">
+      <p style="color:var(--muted); font-size:.9rem; margin-bottom:1rem;">Butuh paket custom atau kombinasi layanan? Kami siap menyesuaikan.</p>
+      <a class="btn btn-primary" href="https://wa.me/6285876552977?text=Halo%20MFI%20Digital%2C%20saya%20butuh%20paket%20custom" target="_blank" rel="noopener">
+        🎯 Diskusi Paket Custom
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimoni">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Testimoni Klien</span>
+      <h2 class="section-title">Mereka Sudah Merasakan<br/>Manfaatnya</h2>
+      <p class="section-sub">Kepercayaan klien adalah aset terbesar kami. Ini yang mereka katakan setelah bekerja sama dengan MFI Digital.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Aplikasi kasir yang dibuat MFI Digital benar-benar mengubah cara kami mengelola usaha. Prosesnya cepat, timnya responsif, dan hasilnya melampaui ekspektasi kami!"</p>
+        <div class="testi-author">
+          <div class="avatar">AR</div>
+          <div>
+            <div class="author-name">Ahmad Rizqi</div>
+            <div class="author-role">Owner Toko Sembako Maju Jaya</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Cetak banner dan brosur untuk opening toko kami hasilnya sangat memuaskan. Warna tajam, ukuran presisi, dan selesai tepat waktu. Pasti balik lagi!"</p>
+        <div class="testi-author">
+          <div class="avatar">SP</div>
+          <div>
+            <div class="author-name">Siti Prameswari</div>
+            <div class="author-role">Pemilik Butik Cantik Mode</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Konten medsos kami jadi jauh lebih profesional sejak pakai jasa Media Kreatif MFI Digital. Engagement naik 3x lipat dalam sebulan pertama. Highly recommended!"</p>
+        <div class="testi-author">
+          <div class="avatar">DW</div>
+          <div>
+            <div class="author-name">Dwi Wahyuni</div>
+            <div class="author-role">Digital Marketing Manager</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CTA FINAL ══ -->
+<section id="cta">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag">Mulai Sekarang</span>
+      <h2 class="cta-title">Siap Bawa Bisnis Anda ke Level <em>Berikutnya?</em></h2>
+      <p class="cta-sub">Konsultasi pertama gratis — tanpa komitmen, tanpa tekanan. Tim kami siap membantu Anda menemukan solusi terbaik.</p>
+      <div class="cta-actions">
+        <a class="btn-wa-lg" href="https://wa.me/6285876552977?text=Halo%20MFI%20Digital%21%20Saya%20ingin%20konsultasi%20gratis%20untuk%20proyek%20saya.%20Bisa%20bantu%3F" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat WhatsApp Sekarang
+        </a>
+      </div>
+      <p style="margin-top:1.4rem; font-size:.82rem; color:var(--muted);">
+        📍 Melayani seluruh Indonesia · ⏰ Respons dalam &lt; 1 jam kerja
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">MFI<span style="color:var(--blue)">.</span><span style="color:var(--orange)">digital</span></div>
+    <p style="color:var(--muted); font-size:.88rem; max-width:42ch; margin-inline:auto;">
+      Solusi digital terpadu: aplikasi, percetakan, dan media kreatif untuk bisnis yang ingin berkembang.
+    </p>
+    <div class="footer-links">
+      <a href="#why">Kenapa Kami</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p class="footer-copy">© 2025 MFI Digital · mfi-digital.web.id · Semua hak dilindungi.</p>
+  </div>
+</footer>
+
+
+<script>
+  // ── Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+
+  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ── Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // stagger siblings
+        const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
